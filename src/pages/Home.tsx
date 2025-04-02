@@ -45,7 +45,7 @@ const Home = () => {
               FundRise Horizon simplifies the fundraising process by providing a platform where startups can connect with investors and track their fundraising progress.
             </p>
             <div className="space-x-4">
-              <Button size="lg" className="bg-teal-500 hover:bg-teal-600" asChild>
+              <Button size="lg" className="bg-purple-500 hover:bg-purple-600" asChild>
                 <Link to="/register">Get Started</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
