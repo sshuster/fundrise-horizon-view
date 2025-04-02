@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { DollarSign, TrendingUp, Users, Shield, ArrowRight } from 'lucide-react';
+import { DollarSign, TrendingUp, Users, Shield, ArrowRight, ChevronRight } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const Home = () => {
@@ -45,8 +45,11 @@ const Home = () => {
               FundRise Horizon simplifies the fundraising process by providing a platform where startups can connect with investors and track their fundraising progress.
             </p>
             <div className="space-x-4">
-              <Button size="lg" className="bg-purple-500 hover:bg-purple-600" asChild>
-                <Link to="/register">Get Started</Link>
+              <Button size="lg" className="bg-gold-500 hover:bg-gold-600" asChild>
+                <Link to="/register">
+                  Get Started Now
+                  <ChevronRight className="ml-1 h-5 w-5" />
+                </Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
                 <Link to="/login">Login</Link>
@@ -99,7 +102,7 @@ const Home = () => {
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Join FundRise Horizon today and connect with investors who can help take your startup to the next level.
           </p>
-          <Button size="lg" className="bg-teal-500 hover:bg-teal-600" asChild>
+          <Button size="lg" className="bg-gold-500 hover:bg-gold-600" asChild>
             <Link to="/register">Get Started Now</Link>
           </Button>
         </div>
