@@ -4,8 +4,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { investorData } from '@/services/mockData';
 import { PieChart, Pie, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts';
 import { AgGridReact } from 'ag-grid-react';
+import { ColDef } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+// Define types for the data structure
+type PortfolioCompany = typeof investorData.portfolioCompanies[0];
+type UpcomingMeeting = typeof investorData.upcomingMeetings[0];
 
 const InvestorDashboard = () => {
   const { portfolio, dealFlow, sectorAllocation, portfolioCompanies, monthlyDealFlow, upcomingMeetings } = investorData;
@@ -13,8 +18,8 @@ const InvestorDashboard = () => {
   // Colors for charts
   const COLORS = ['#0EA5E9', '#FBBF24', '#10B981', '#8B5CF6', '#EC4899'];
   
-  // Column definitions for portfolio table
-  const portfolioColumns = [
+  // Column definitions for portfolio table - with proper typing
+  const portfolioColumns: ColDef<PortfolioCompany>[] = [
     { headerName: 'Company', field: 'company', sortable: true, filter: true },
     { headerName: 'Sector', field: 'sector', sortable: true, filter: true },
     { 
@@ -22,27 +27,27 @@ const InvestorDashboard = () => {
       field: 'invested', 
       sortable: true, 
       filter: true,
-      valueFormatter: (params: any) => `$${params.value.toLocaleString()}` 
+      valueFormatter: (params) => `$${params.value.toLocaleString()}` 
     },
     { 
       headerName: 'Current Value', 
       field: 'currentValue', 
       sortable: true, 
       filter: true,
-      valueFormatter: (params: any) => `$${params.value.toLocaleString()}` 
+      valueFormatter: (params) => `$${params.value.toLocaleString()}` 
     },
     { 
       headerName: 'Multiple', 
       field: 'multiple', 
       sortable: true, 
       filter: true,
-      valueFormatter: (params: any) => `${params.value}x` 
+      valueFormatter: (params) => `${params.value}x` 
     },
     { headerName: 'Stage', field: 'stage', sortable: true, filter: true },
   ];
   
-  // Column definitions for meetings table
-  const meetingColumns = [
+  // Column definitions for meetings table - with proper typing
+  const meetingColumns: ColDef<UpcomingMeeting>[] = [
     { headerName: 'Startup', field: 'startup', sortable: true, filter: true },
     { headerName: 'Sector', field: 'sector', sortable: true, filter: true },
     { headerName: 'Stage', field: 'stage', sortable: true, filter: true },

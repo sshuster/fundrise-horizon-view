@@ -5,8 +5,13 @@ import { Progress } from '@/components/ui/progress';
 import { startupData } from '@/services/mockData';
 import { PieChart, Pie, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, Cell, ResponsiveContainer } from 'recharts';
 import { AgGridReact } from 'ag-grid-react';
+import { ColDef } from 'ag-grid-community';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+// Define types for the data structure
+type Interaction = typeof startupData.recentInteractions[0];
+type Meeting = typeof startupData.upcomingMeetings[0];
 
 const StartupDashboard = () => {
   const { funding, recentInteractions, monthlyActivities, fundingRounds, upcomingMeetings } = startupData;
@@ -17,8 +22,8 @@ const StartupDashboard = () => {
   // Colors for charts
   const COLORS = ['#0EA5E9', '#FBBF24', '#10B981', '#8B5CF6'];
   
-  // Column definitions for interactions table
-  const interactionColumns = [
+  // Column definitions for interactions table - with proper typing
+  const interactionColumns: ColDef<Interaction>[] = [
     { headerName: 'Investor', field: 'investor', sortable: true, filter: true },
     { headerName: 'Status', field: 'status', sortable: true, filter: true },
     { headerName: 'Date', field: 'date', sortable: true, filter: true },
@@ -27,12 +32,12 @@ const StartupDashboard = () => {
       field: 'amount', 
       sortable: true, 
       filter: true,
-      valueFormatter: (params: any) => params.value ? `$${params.value.toLocaleString()}` : '-' 
+      valueFormatter: (params) => params.value ? `$${params.value.toLocaleString()}` : '-' 
     },
   ];
   
-  // Column definitions for meetings table
-  const meetingColumns = [
+  // Column definitions for meetings table - with proper typing
+  const meetingColumns: ColDef<Meeting>[] = [
     { headerName: 'Investor', field: 'investor', sortable: true, filter: true },
     { headerName: 'Date', field: 'date', sortable: true, filter: true },
     { headerName: 'Time', field: 'time', sortable: true, filter: true },
